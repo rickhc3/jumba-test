@@ -31,8 +31,6 @@ Exemplo: "docker exec jumba-backend php artisan job:dispatch DownloadDataJob 202
 
 Este comando baixará os dados do site da B3 iniciando na data 16/12/2022 e finalizando na data 03/02/2023.
 
-### Screenshots do projeto
+### Screenshot do projeto
 
-![Screenshot 1](link-para-imagem)
-
-![Screenshot 2](link-para-imagem)
+![Screenshot 1](https://github.com/rickhc3/jumba-test/blob/master/docker/img/screenshot.png)
