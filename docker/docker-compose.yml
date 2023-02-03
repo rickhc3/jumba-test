@@ -1,0 +1,49 @@
+version: '3'
+services:
+  db:
+    platform: linux/x86_64
+    container_name: jumba-db
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "4001:3306"
+    volumes:
+      - ./database/volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: jumba
+      MYSQL_USER: jumba
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_HOST: 172.20.0.4
+    networks:
+      - jumba
+  front:
+    platform: linux/x86_64
+    build: ../frontend
+    container_name: jumba-frontend
+    ports:
+      - "4002:7000"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    networks:
+      - jumba
+  api:
+    platform: linux/x86_64
+    build: ../backend
+    command: sh -c "composer install --ignore-platform-reqs && php artisan key:generate && php artisan migrate && php -S 0.0.0.0:80 -t public"
+    container_name: jumba-backend
+    ports:
+      - "4000:80"
+    volumes:
+      - ../backend/:/usr/src
+    links:
+      - "db:jumba-db"
+    depends_on:
+      - db
+    networks:
+      - jumba
+networks:
+  jumba:
+    driver: bridge
