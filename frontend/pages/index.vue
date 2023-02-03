@@ -17,10 +17,23 @@
         @change="getData"
       ></v-autocomplete>
     </v-toolbar>
-    <v-container fluid v-if="showChart">
+    <v-container fluid>
+      <h1 class="text-center" v-if="!showChart">
+        Selecione o ativo no select acima
+      </h1>
+
+      <div class="text-center">
+        <v-progress-circular
+          :size="170"
+          :width="7"
+          color="#1d2632"
+          indeterminate
+          v-if="loading"
+        ></v-progress-circular>
+      </div>
       <v-row>
         <v-col cols="12">
-          <LineChart :data="chartData" :options="options" />
+          <LineChart :data="chartData" :options="options" v-if="showChart" />
         </v-col>
       </v-row>
     </v-container>
@@ -86,7 +99,8 @@ export default {
         intersect: false,
         callbacks: {
           label: function (tooltipItem, data) {
-            var label = data.datasets[tooltipItem.datasetIndex].label + ": " || "";
+            var label =
+              data.datasets[tooltipItem.datasetIndex].label + ": " || "";
 
             if (label !== "Quantidade de Saldo: ") {
               label += Intl.NumberFormat("pt-BR", {
@@ -116,6 +130,7 @@ export default {
 
   methods: {
     async getData(asset) {
+      this.loading = true;
       await this.$axios
         .get("http://localhost:4000/api/list-position-by-asset", {
           params: {
@@ -125,6 +140,7 @@ export default {
         .then((response) => {
           this.dataSelectedAsset = response.data;
           this.showChart = true;
+          this.loading = false;
         })
         .catch((error) => {
           console.log(error);
