@@ -34,6 +34,20 @@ $ docker exec jumba-backend php artisan job:dispatch DownloadDataJob 2022-12-16 
 
 Este comando baixará os dados do site da B3 iniciando na data 16/12/2022 e finalizando na data 03/02/2023.
 
-### Screenshot do projeto
+
+### Testes
+
+Para executar os testes, execute o comando:
+
+```sh
+$ docker exec jumba-backend php artisan test
+```
+
+Existe somente um teste, que verifica se o download do arquivo está sendo feito corretamente e os dados estão sendo salvos no banco de dados.
 
 ![Screenshot 1](https://github.com/rickhc3/jumba-test/blob/master/docker/img/screenshot.png)
+
+
+### Screenshot do projeto
+
+![Screenshot 2](https://github.com/rickhc3/jumba-test/blob/master/docker/img/tests.png)
