@@ -34,6 +34,7 @@ $ docker exec jumba-backend php artisan job:dispatch DownloadDataJob 2022-12-16 
 
 Este comando baixará os dados do site da B3 iniciando na data 16/12/2022 e finalizando na data 03/02/2023.
 
+4. Acesse o projeto pelo endereço: http://localhost:4002/
 
 ### Testes
 
