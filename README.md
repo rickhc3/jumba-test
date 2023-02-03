@@ -45,9 +45,9 @@ $ docker exec jumba-backend php artisan test
 
 Existe somente um teste, que verifica se o download do arquivo está sendo feito corretamente e os dados estão sendo salvos no banco de dados.
 
-![Screenshot 1](https://github.com/rickhc3/jumba-test/blob/master/docker/img/screenshot.png)
+![Screenshot 1](https://github.com/rickhc3/jumba-test/blob/master/docker/img/tests.png)
 
 
 ### Screenshot do projeto
 
-![Screenshot 2](https://github.com/rickhc3/jumba-test/blob/master/docker/img/tests.png)
+![Screenshot 2](https://github.com/rickhc3/jumba-test/blob/master/docker/img/screenshot.png)
